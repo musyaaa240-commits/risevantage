@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RiseVantage — The World Is Changing Fast. Stay Ahead of It.</title>
+<meta name="description" content="RiseVantage covers Health, Finance, Education, Technology, Lifestyle and Business — the topics that matter most right now.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1A3C6E;
+    --gold: #F4A824;
+    --health: #2ECC71;
+    --finance: #1A7A4A;
+    --education: #5B4FCF;
+    --tech: #00B4D8;
+    --lifestyle: #FF6B6B;
+    --business: #E8590C;
+    --bg: #F8F7F4;
+    --white: #FFFFFF;
+    --text: #1C1C1E;
+    --gray: #6B7280;
+    --border: #E5E7EB;
+    --dark-bg: #141414;
+    --dark-text: #F0EDE8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ===== READING PROGRESS BAR ===== */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--gold);
+    z-index: 9999;
+    transition: width 0.1s;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: 16px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .logo-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--text);
+  }
+
+  .logo-text span { color: var(--blue); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--gray);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover { color: var(--text); background: var(--bg); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .search-btn {
+    width: 36px; height: 36px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .search-btn:hover { background: var(--white); border-color: var(--blue); }
+
+  .subscribe-btn {
+    background: var(--blue);
+    color: var(--white);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .subscribe-btn:hover { background: #152f58; transform: translateY(-1px); }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--blue) 0%, #0f2447 60%, #1a1a2e 100%);
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 60% 40%, rgba(244,168,36,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(0,180,216,0.06) 0%, transparent 40%);
+  }
+
+  .hero-content { position: relative; max-width: 720px; margin: 0 auto; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(244,168,36,0.15);
+    border: 1px solid rgba(244,168,36,0.3);
+    color: var(--gold);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 36px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--text);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(244,168,36,0.4); }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+  .hero-trust {
+    margin-top: 32px;
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
+  }
+
+  /* ===== TICKER ===== */
+  .ticker {
+    background: var(--gold);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 30s linear infinite;
+    gap: 48px;
+  }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .ticker-dot { color: var(--blue); font-size: 18px; line-height: 1; }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  .section { padding: 60px 24px; max-width: 1280px; margin: 0 auto; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--text);
+  }
+
+  .section-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .section-link:hover { text-decoration: underline; }
+
+  /* ===== FEATURED ARTICLE ===== */
+  .featured {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+  }
+
+  .featured:hover { transform: translateY(-3px); }
+
+  .featured-img {
+    background: linear-gradient(135deg, #0f2447, #1A3C6E);
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-img::after {
+    content: '🤖';
+    font-size: 80px;
+    opacity: 0.3;
+  }
+
+  .featured-content { padding: 48px 40px; display: flex; flex-direction: column; justify-content: center; }
+
+  .cat-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+
+  .cat-tech { background: rgba(0,180,216,0.12); color: var(--tech); }
+  .cat-health { background: rgba(46,204,113,0.12); color: var(--health); }
+  .cat-finance { background: rgba(26,122,74,0.12); color: var(--finance); }
+  .cat-education { background: rgba(91,79,207,0.12); color: var(--education); }
+  .cat-lifestyle { background: rgba(255,107,107,0.12); color: var(--lifestyle); }
+  .cat-business { background: rgba(232,89,12,0.12); color: var(--business); }
+
+  .featured-content h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  .featured-content p { color: var(--gray); font-size: 15px; margin-bottom: 24px; }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--gray);
+  }
+
+  .article-meta span { display: flex; align-items: center; gap: 4px; }
+
+  .read-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--blue);
+    color: var(--white);
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 20px;
+    width: fit-content;
+    transition: all 0.2s;
+  }
+
+  .read-btn:hover { background: #152f58; }
+
+  /* ===== CATEGORY GRID ===== */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .cat-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 28px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .cat-card.health::before { background: var(--health); }
+  .cat-card.finance::before { background: var(--finance); }
+  .cat-card.education::before { background: var(--education); }
+  .cat-card.tech::before { background: var(--tech); }
+  .cat-card.lifestyle::before { background: var(--lifestyle); }
+  .cat-card.business::before { background: var(--business); }
+
+  .cat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+
+  .cat-emoji { font-size: 28px; margin-bottom: 12px; }
+
+  .cat-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .cat-card p { font-size: 13px; color: var(--gray); margin-bottom: 14px; }
+
+  .cat-latest {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ===== MOST READ ===== */
+  .most-read-section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  }
+
+  .most-read-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .most-read-list { list-style: none; }
+
+  .most-read-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+
+  .most-read-item:last-child { border-bottom: none; }
+  .most-read-item:hover { color: var(--blue); }
+
+  .most-read-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--border);
+    line-height: 1;
+    min-width: 32px;
+    font-weight: 400;
+  }
+
+  .most-read-item:nth-child(1) .most-read-num,
+  .most-read-item:nth-child(2) .most-read-num { color: var(--gold); }
+
+  .most-read-text h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; line-height: 1.4; }
+  .most-read-text span { font-size: 12px; color: var(--gray); }
+
+  .trending-badge {
+    background: rgba(244,168,36,0.15);
+    color: #b37a0a;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  /* ===== ARTICLES GRID ===== */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .article-card {
+    background: var(--white);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .article-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.1); }
+
+  .article-img {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+  }
+
+  .article-img.health-bg { background: linear-gradient(135deg, #d4f5e4, #a8edca); }
+  .article-img.finance-bg { background: linear-gradient(135deg, #d4ede0, #a0d8b8); }
+  .article-img.education-bg { background: linear-gradient(135deg, #e4e0f8, #c4bcf0); }
+  .article-img.tech-bg { background: linear-gradient(135deg, #d0f0f8, #a0dff0); }
+  .article-img.lifestyle-bg { background: linear-gradient(135deg, #fde8e8, #f8c4c4); }
+  .article-img.business-bg { background: linear-gradient(135deg, #fce8d8, #f8c8a8); }
+
+  .article-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+  .article-body h3 { font-family: 'DM Serif Display', serif; font-size: 17px; line-height: 1.4; margin-bottom: 8px; margin-top: 8px; }
+  .article-body p { font-size: 13px; color: var(--gray); flex: 1; margin-bottom: 12px; }
+  .article-footer { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--gray); }
+
+  /* ===== NEWSLETTER ===== */
+  .newsletter-section {
+    background: var(--blue);
+    padding: 64px 24px;
+    text-align: center;
+  }
+
+  .newsletter-inner { max-width: 560px; margin: 0 auto; }
+
+  .newsletter-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .newsletter-section p { color: rgba(255,255,255,0.7); font-size: 16px; margin-bottom: 28px; }
+
+  .newsletter-form {
+    display: flex;
+    gap: 10px;
+    max-width: 460px;
+    margin: 0 auto 16px;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+  }
+
+  .newsletter-form button {
+    background: var(--gold);
+    color: var(--text);
+    border: none;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .newsletter-form button:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(244,168,36,0.4); }
+  .newsletter-fine { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+  /* ===== START HERE BANNER ===== */
+  .start-here-banner {
+    background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+    border: 1px solid #c5d5f8;
+    border-radius: 16px;
+    padding: 36px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 24px;
+    max-width: 1232px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+  }
+
+  .start-here-banner h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+
+  .start-here-banner p { font-size: 14px; color: var(--gray); }
+
+  .start-btn {
+    background: var(--blue);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .start-btn:hover { background: #152f58; transform: translateY(-1px); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.6);
+    padding: 60px 24px 32px;
+  }
+
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand .logo-text { color: var(--white); }
+  .footer-brand p { font-size: 14px; margin-top: 12px; margin-bottom: 20px; line-height: 1.7; }
+
+  .footer-social { display: flex; gap: 10px; }
+
+  .social-btn {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+
+  .social-btn:hover { background: var(--gold); color: var(--text); }
+
+  .footer-col h4 {
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col ul li { margin-bottom: 10px; }
+
+  .footer-col ul a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .featured { grid-template-columns: 1fr; }
+    .featured-img { min-height: 200px; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .articles-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .start-here-banner { flex-direction: column; gap: 20px; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .cat-grid { grid-template-columns: 1fr; }
+    .articles-grid { grid-template-columns: 1fr; }
+    .newsletter-form { flex-direction: column; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .hero { padding: 48px 20px; }
+    .featured-content { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 20L20 4M12 20L4 4M12 20V8"/>
+          <circle cx="17" cy="7" r="2"/>
+        </svg>
+      </div>
+      <span class="logo-text"><span>Rise</span>Vantage</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#">Health</a></li>
+      <li><a href="#">Finance</a></li>
+      <li><a href="#">Education</a></li>
+      <li><a href="#">Tech & AI</a></li>
+      <li><a href="#">Lifestyle</a></li>
+      <li><a href="#">Business</a></li>
+      <li><a href="#">Best Of</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="search-btn" title="Search">
+        <svg width="16" height="16" fill="none" stroke="#6B7280" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+      </button>
+      <button class="subscribe-btn">Subscribe →</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🌍 Trusted Globally</div>
+    <h1>The World Is Changing <em>Fast.</em><br>Stay Ahead of It.</h1>
+    <p>Ideas that matter across health, money, technology, and life — curated for people who refuse to fall behind.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Explore RiseVantage →</a>
+      <a href="#" class="btn-secondary">Start Here</a>
+    </div>
+    <p class="hero-trust">Trusted by readers in 50+ countries</p>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="ticker-dot">🔥</span> TRENDING NOW:</span>
+    <span class="ticker-item">Why AI Is Replacing White-Collar Jobs</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">The $100 Investment Strategy Going Viral</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">5 Morning Habits of the World's Top CEOs</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Why 90% of Diets Fail — Science Explains</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">The 10 AI Tools Changing Everything in 2026</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">How to Build Wealth Starting With $0</span>
+    <span class="ticker-item">•</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item"><span class="ticker-dot">🔥</span> TRENDING NOW:</span>
+    <span class="ticker-item">Why AI Is Replacing White-Collar Jobs</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">The $100 Investment Strategy Going Viral</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">5 Morning Habits of the World's Top CEOs</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Why 90% of Diets Fail — Science Explains</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">The 10 AI Tools Changing Everything in 2026</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">How to Build Wealth Starting With $0</span>
+    <span class="ticker-item">•</span>
+  </div>
+</div>
+
+<!-- FEATURED ARTICLE -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">Featured Story</h2>
+    <a href="#" class="section-link">View all →</a>
+  </div>
+  <a href="#" class="featured">
+    <div class="featured-img"></div>
+    <div class="featured-content">
+      <span class="cat-tag cat-tech">🤖 Technology & AI</span>
+      <h2>Why AI Will Completely Reshape How You Work, Invest, and Live by 2027</h2>
+      <p>The transformation is already underway — and most people have no idea how fast it's moving. Here's what the data actually says, and what it means for your career and finances.</p>
+      <div class="article-meta">
+        <span>⏱ 6 min read</span>
+        <span>📅 March 2026</span>
+        <span>✍️ RiseVantage Editorial</span>
+      </div>
+      <a href="#" class="read-btn">Read Full Article →</a>
+    </div>
+  </a>
+</div>
+
+<!-- CATEGORY GRID -->
+<div class="section" style="padding-top: 0;">
+  <div class="section-header">
+    <h2 class="section-title">Explore by Topic</h2>
+  </div>
+  <div class="cat-grid">
+    <a href="#" class="cat-card health">
+      <div class="cat-emoji">🟢</div>
+      <h3>Health & Fitness</h3>
+      <p>Science-backed habits for energy, longevity, and peak performance.</p>
+      <span class="cat-latest">Latest articles →</span>
+    </a>
+    <a href="#" class="cat-card finance">
+      <div class="cat-emoji">💰</div>
+      <h3>Finance & Investment</h3>
+      <p>Build real wealth — no matter where you're starting from.</p>
+      <span class="cat-latest">Latest articles →</span>
+    </a>
+    <a href="#" class="cat-card education">
+      <div class="cat-emoji">📚</div>
+      <h3>Education & Growth</h3>
+      <p>Learn faster, think sharper, and keep evolving in a changing world.</p>
+      <span class="cat-latest">Latest articles →</span>
+    </a>
+    <a href="#" class="cat-card tech">
+      <div class="cat-emoji">🤖</div>
+      <h3>Technology & AI</h3>
+      <p>Understand the tools reshaping every industry — before it's too late.</p>
+      <span class="cat-latest">Latest articles →</span>
+    </a>
+    <a href="#" class="cat-card lifestyle">
+      <div class="cat-emoji">✨</div>
+      <h3>Lifestyle & Motivation</h3>
+      <p>Design a life you're proud of — one intentional decision at a time.</p>
+      <span class="cat-latest">Latest articles →</span>
+    </a>
+    <a href="#" class="cat-card business">
+      <div class="cat-emoji">🚀</div>
+      <h3>Business & Entrepreneurship</h3>
+      <p>From side hustle to empire — the playbook for building something real.</p>
+      <span class="cat-latest">Latest articles →</span>
+    </a>
+  </div>
+</div>
+
+<!-- MOST READ + LATEST -->
+<div class="section" style="padding-top: 0; display: grid; grid-template-columns: 1fr 2fr; gap: 32px;">
+  <!-- Most Read -->
+  <div class="most-read-section">
+    <h3 class="most-read-title">📊 Most Read This Week</h3>
+    <ul class="most-read-list">
+      <a href="#" class="most-read-item">
+        <span class="most-read-num">01</span>
+        <div class="most-read-text">
+          <h4>The 3 Money Rules Nobody Teaches You in School <span class="trending-badge">🔥 Hot</span></h4>
+          <span>Finance · 5 min read</span>
+        </div>
+      </a>
+      <a href="#" class="most-read-item">
+        <span class="most-read-num">02</span>
+        <div class="most-read-text">
+          <h4>How to Build a $10K/Month Business With No Experience <span class="trending-badge">🔥 Hot</span></h4>
+          <span>Business · 7 min read</span>
+        </div>
+      </a>
+      <a href="#" class="most-read-item">
+        <span class="most-read-num">03</span>
+        <div class="most-read-text">
+          <h4>The AI Tools Making Human Jobs Obsolete</h4>
+          <span>Tech & AI · 6 min read</span>
+        </div>
+      </a>
+      <a href="#" class="most-read-item">
+        <span class="most-read-num">04</span>
+        <div class="most-read-text">
+          <h4>Why 90% of Diets Fail (And What Actually Works)</h4>
+          <span>Health · 4 min read</span>
+        </div>
+      </a>
+      <a href="#" class="most-read-item">
+        <span class="most-read-num">05</span>
+        <div class="most-read-text">
+          <h4>The 5-Minute Evening Routine That Changes Everything</h4>
+          <span>Lifestyle · 3 min read</span>
+        </div>
+      </a>
+    </ul>
+  </div>
+
+  <!-- Latest Articles -->
+  <div>
+    <div class="section-header" style="margin-bottom: 20px;">
+      <h2 class="section-title">Latest Articles</h2>
+      <a href="#" class="section-link">See all →</a>
+    </div>
+    <div class="articles-grid">
+      <a href="#" class="article-card">
+        <div class="article-img health-bg">🏃</div>
+        <div class="article-body">
+          <span class="cat-tag cat-health">Health</span>
+          <h3>The 10-Minute Morning Routine Backed by Neuroscience</h3>
+          <p>What happens in your first 10 minutes shapes your entire day — here's what science says.</p>
+          <div class="article-footer"><span>4 min read</span><span>Mar 2026</span></div>
+        </div>
+      </a>
+      <a href="#" class="article-card">
+        <div class="article-img finance-bg">📈</div>
+        <div class="article-body">
+          <span class="cat-tag cat-finance">Finance</span>
+          <h3>How to Build Wealth Starting With Literally $0</h3>
+          <p>No savings? No problem. The framework that works regardless of your starting point.</p>
+          <div class="article-footer"><span>6 min read</span><span>Mar 2026</span></div>
+        </div>
+      </a>
+      <a href="#" class="article-card">
+        <div class="article-img education-bg">🧠</div>
+        <div class="article-body">
+          <span class="cat-tag cat-education">Education</span>
+          <h3>How to Learn Anything 10x Faster Using Science</h3>
+          <p>The accelerated learning techniques that top performers use — and most people ignore.</p>
+          <div class="article-footer"><span>5 min read</span><span>Mar 2026</span></div>
+        </div>
+      </a>
+      <a href="#" class="article-card">
+        <div class="article-img tech-bg">💻</div>
+        <div class="article-body">
+          <span class="cat-tag cat-tech">Tech & AI</span>
+          <h3>The 5 Tech Skills Worth More Than a Degree by 2027</h3>
+          <p>The job market is shifting faster than universities can keep up. Get ahead now.</p>
+          <div class="article-footer"><span>5 min read</span><span>Mar 2026</span></div>
+        </div>
+      </a>
+      <a href="#" class="article-card">
+        <div class="article-img lifestyle-bg">✨</div>
+        <div class="article-body">
+          <span class="cat-tag cat-lifestyle">Lifestyle</span>
+          <h3>Why Boredom Is the Most Underrated Productivity Tool</h3>
+          <p>Constant stimulation is quietly destroying your ability to think. Here's the fix.</p>
+          <div class="article-footer"><span>4 min read</span><span>Mar 2026</span></div>
+        </div>
+      </a>
+      <a href="#" class="article-card">
+        <div class="article-img business-bg">🚀</div>
+        <div class="article-body">
+          <span class="cat-tag cat-business">Business</span>
+          <h3>Turn Your Knowledge Into Income Starting This Week</h3>
+          <p>You know more than you think. Here's how to package it and start earning from it.</p>
+          <div class="article-footer"><span>6 min read</span><span>Mar 2026</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <h2>📬 Join 50,000+ Readers<br>Who Stay Ahead</h2>
+    <p>Every week, the most important ideas in health, money, tech, and life — in under 5 minutes. Free. Forever.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Your email address">
+      <button>Get Smarter →</button>
+    </div>
+    <p class="newsletter-fine">No spam. No fluff. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- START HERE BANNER -->
+<div style="padding: 48px 24px 0; max-width: 1280px; margin: 0 auto;">
+  <div class="start-here-banner">
+    <div>
+      <h3>New to RiseVantage?</h3>
+      <p>We built a reading path just for you — start here and never feel lost again.</p>
+    </div>
+    <a href="#" class="start-btn">Start Your Journey →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#F4A824" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20L20 4M12 20L4 4M12 20V8"/>
+              <circle cx="17" cy="7" r="2"/>
+            </svg>
+          </div>
+          <span class="logo-text"><span>Rise</span>Vantage</span>
+        </a>
+        <p>"The World Is Changing Fast.<br>Stay Ahead of It."</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">𝕏</a>
+          <a href="#" class="social-btn">in</a>
+          <a href="#" class="social-btn">📸</a>
+          <a href="#" class="social-btn">▶</a>
+          <a href="#" class="social-btn">📌</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">Health & Fitness</a></li>
+          <li><a href="#">Finance & Investment</a></li>
+          <li><a href="#">Education & Growth</a></li>
+          <li><a href="#">Technology & AI</a></li>
+          <li><a href="#">Lifestyle & Motivation</a></li>
+          <li><a href="#">Business</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About The Vision</a></li>
+          <li><a href="#">Start Here</a></li>
+          <li><a href="#">Best Of</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Advertise</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 RiseVantage. All rights reserved.</span>
+      <span>Built for curious minds worldwide 🌍</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reading progress bar
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('progress-bar').style.width = progress + '%';
+  });
+</script>
+
+</body>
+</html>
