@@ -747,7 +747,15 @@
   }
 </style>
   <script src="https://pl28840828.effectivegatecpm.com/9c/8e/8b/9c8e8b52646db0ac3d460ff70d9636cb.js"></script>
-</head>
+<script src="https://www.google.com/recaptcha/api.js?render=6LdNg4AsAAAAAAlQaPt-VNx-grqQP9hh6H3MDV-v"></script>
+<script>
+  grecaptcha.ready(function() {
+    grecaptcha.execute('6LdNg4AsAAAAAAlQaPt-VNx-grqQP9hh6H3MDV-v', {action: 'homepage'}).then(function(token) {
+      // reCAPTCHA v3 active - protecting from bots
+      console.log('reCAPTCHA active');
+    });
+  });
+</script></head>
 <body>
 
 <div id="progress-bar"></div>
