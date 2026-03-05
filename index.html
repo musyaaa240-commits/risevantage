@@ -1126,5 +1126,25 @@
   });
 </script>
 <script src="https://pl28840845.effectivegatecpm.com/59/de/ab/59deab69c292ea3e0b2799db34d4f13a.js"></script>
-</body>
+<script>
+  // Disable right click
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  
+  // Disable copy
+  document.addEventListener('copy', e => e.preventDefault());
+  
+  // Disable select all
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey && (e.key === 'a' || e.key === 'c' || e.key === 'u' || e.key === 's')) {
+      e.preventDefault();
+    }
+  });
+  
+  // Disable developer tools
+  document.addEventListener('keydown', e => {
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+      e.preventDefault();
+    }
+  });
+</script></body>
 </html>
