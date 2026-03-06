@@ -97,6 +97,38 @@ body.focus-mode .navbar,
 body.focus-mode footer,
 body.focus-mode .floating-social,
 body.focus-mode .back-to-top { display:none!important; }
+/* Focus mode exit button — always visible */
+#focus-exit-btn {
+  position:fixed;
+  top:16px; right:16px;
+  z-index:99996;
+  padding:9px 18px;
+  background:rgba(244,168,36,0.12);
+  border:1.5px solid rgba(244,168,36,0.5);
+  color:var(--accent);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  border-radius:50px;
+  cursor:pointer;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.3s ease, background 0.25s, transform 0.25s;
+  backdrop-filter:blur(8px);
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+#focus-exit-btn:hover {
+  background:rgba(244,168,36,0.22);
+  transform:scale(1.04);
+}
+body.focus-mode #focus-exit-btn {
+  opacity:1;
+  pointer-events:auto;
+}
 a { color:inherit; text-decoration:none; }
 img { max-width:100%; height:auto; display:block; }
 button { cursor:none; border:none; background:none; font-family:inherit; }
@@ -176,13 +208,140 @@ ul { list-style:none; }
 #opening-screen {
   position:fixed;
   inset:0;
-  background:#000;
+  background:radial-gradient(ellipse at 50% 60%, #0d1b3e 0%, #050d1f 50%, #000408 100%);
   z-index:99990;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   gap:20px;
+  overflow:hidden;
+}
+/* Star field layers */
+#opening-screen::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 22% 72%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 35% 8%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 48% 55%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(2px 2px at 62% 28%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 80%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 88% 12%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 45%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 18% 90%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(2px 2px at 30% 35%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 88%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 5%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 82% 60%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 40%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(2px 2px at 3% 68%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 95%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 58% 18%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 78%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 30%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 78% 48%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 58%, rgba(244,168,36,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 67% 70%, rgba(100,160,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 44% 22%, rgba(200,180,255,0.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 88% 88%, rgba(244,168,36,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 12% 50%, rgba(100,200,255,0.4) 0%, transparent 100%);
+  animation:starTwinkle 6s ease-in-out infinite alternate;
+  pointer-events:none;
+  z-index:0;
+}
+/* Nebula glow */
+#opening-screen::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 55% 35% at 20% 80%, rgba(26,60,110,0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 80% 20%, rgba(60,0,120,0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 40% at 50% 50%, rgba(244,168,36,0.04) 0%, transparent 70%);
+  pointer-events:none;
+  z-index:0;
+  animation:nebulaShift 12s ease-in-out infinite alternate;
+}
+@keyframes starTwinkle {
+  0% { opacity:0.7; transform:scale(1); }
+  50% { opacity:1; transform:scale(1.02); }
+  100% { opacity:0.8; transform:scale(1); }
+}
+@keyframes nebulaShift {
+  0% { transform:translate(0,0) scale(1); }
+  100% { transform:translate(2%,1%) scale(1.05); }
+}
+/* Shooting star */
+.shooting-star {
+  position:absolute;
+  height:1.5px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.9),transparent);
+  border-radius:2px;
+  animation:shoot linear forwards;
+  pointer-events:none;
+  z-index:1;
+}
+@keyframes shoot {
+  0% { transform:translateX(-200px) translateY(0) rotate(-25deg); opacity:1; width:120px; }
+  100% { transform:translateX(600px) translateY(120px) rotate(-25deg); opacity:0; width:40px; }
+}
+/* Orbit ring around content */
+.opening-orbit {
+  position:absolute;
+  width:340px; height:340px;
+  border:1px solid rgba(244,168,36,0.08);
+  border-radius:50%;
+  animation:orbitSpin 30s linear infinite;
+  pointer-events:none;
+  z-index:1;
+}
+.opening-orbit::before {
+  content:'';
+  position:absolute;
+  top:-3px; left:50%;
+  width:6px; height:6px;
+  background:var(--accent);
+  border-radius:50%;
+  box-shadow:0 0 8px 2px rgba(244,168,36,0.6);
+  transform:translateX(-50%);
+}
+.opening-orbit-2 {
+  width:500px; height:500px;
+  border-color:rgba(100,160,255,0.05);
+  animation:orbitSpin 50s linear infinite reverse;
+}
+.opening-orbit-2::before {
+  background:rgba(100,180,255,0.7);
+  box-shadow:0 0 6px 2px rgba(100,180,255,0.4);
+}
+@keyframes orbitSpin {
+  from { transform:rotate(0deg); }
+  to { transform:rotate(360deg); }
+}
+/* Grid overlay for futuristic feel */
+.opening-grid {
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(26,60,110,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,60,110,0.06) 1px, transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+  z-index:1;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+/* Glow line at bottom */
+.opening-horizon {
+  position:absolute;
+  bottom:30%; left:0; right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(244,168,36,0.15), rgba(26,82,152,0.2), transparent);
+  pointer-events:none;
+  z-index:1;
 }
 #opening-screen.hide {
   animation:wipeOut 1.2s cubic-bezier(0.76,0,0.24,1) forwards;
@@ -1546,24 +1705,19 @@ body.focus-mode section:not(.article-section) { display:none; }
 <!-- TOAST CONTAINER -->
 <div id="toast-container"></div>
 
+<!-- FOCUS MODE EXIT BUTTON — always on top, visible only in focus mode -->
+<button id="focus-exit-btn" onclick="toggleFocusMode()" title="Exit Focus Mode">
+  ✕ Exit Focus
+</button>
+
 <!-- OPENING ANIMATION -->
 <div id="opening-screen">
-  <div class="opening-logo-wrap">
-    <svg class="opening-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="36" stroke="#F4A824" stroke-width="2" opacity="0.3"/>
-      <circle cx="40" cy="40" r="3" fill="#F4A824"/>
-      <!-- Compass needles -->
-      <line x1="40" y1="10" x2="40" y2="34" stroke="#F4A824" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="40" y1="46" x2="40" y2="68" stroke="rgba(244,168,36,0.4)" stroke-width="2" stroke-linecap="round"/>
-      <line x1="10" y1="40" x2="34" y2="40" stroke="rgba(244,168,36,0.4)" stroke-width="2" stroke-linecap="round"/>
-      <line x1="46" y1="40" x2="68" y2="40" stroke="rgba(244,168,36,0.4)" stroke-width="2" stroke-linecap="round"/>
-      <!-- Arrow pointing up-right -->
-      <path d="M44 20 L56 20 L56 32" stroke="#F4A824" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <line x1="40" y1="24" x2="56" y2="20" stroke="#F4A824" stroke-width="2" stroke-linecap="round"/>
-      <!-- Mountain -->
-      <path d="M24 58 L40 36 L56 58Z" stroke="#F4A824" stroke-width="2" fill="none" stroke-linejoin="round"/>
-      <path d="M32 58 L40 46 L48 58" fill="#F4A824" opacity="0.2"/>
-    </svg>
+  <!-- Space decorative layers -->
+  <div class="opening-grid"></div>
+  <div class="opening-horizon"></div>
+  <div class="opening-orbit"></div>
+  <div class="opening-orbit opening-orbit-2"></div>
+  <div class="opening-logo-wrap" style="position:relative;z-index:2;">
     <div class="opening-wordmark" id="opening-wordmark"></div>
     <div class="opening-tagline">The World Is Changing Fast. Stay Ahead of It.</div>
     <button class="opening-enter-btn" id="opening-enter-btn" onclick="enterSite()">ENTER</button>
@@ -2322,6 +2476,27 @@ function typeOpeningWordmark() {
     el.textContent = text.slice(0, ++i);
     if (i === text.length) clearInterval(interval);
   }, 100);
+  // Launch shooting stars in the opening screen
+  spawnShootingStars();
+}
+
+function spawnShootingStars() {
+  const screen = document.getElementById('opening-screen');
+  if (!screen) return;
+  function fire() {
+    const star = document.createElement('div');
+    star.className = 'shooting-star';
+    star.style.top = Math.random() * 60 + '%';
+    star.style.left = Math.random() * 40 + '%';
+    star.style.animationDuration = (Math.random() * 0.8 + 0.6) + 's';
+    star.style.animationDelay = '0s';
+    screen.appendChild(star);
+    setTimeout(() => star.remove(), 1500);
+  }
+  fire();
+  setTimeout(fire, 1200);
+  setTimeout(fire, 2600);
+  setTimeout(fire, 4000);
 }
 
 function enterSite() {
